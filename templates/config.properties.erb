@@ -1,0 +1,12 @@
+coordinator=true
+<% if @master == @fqdn -%>
+datasources=jmx
+discovery-server.enabled=true
+<% else -%>
+datasources=jmx,hive
+<% end -%>
+http-server.http.port=8181
+presto-metastore.db.type=h2
+presto-metastore.db.filename=<%= @install_dir %>/MetaStore
+task.max-memory=20GB
+discovery.uri=http://<%= @master %>:8181
